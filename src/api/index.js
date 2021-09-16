@@ -2,8 +2,8 @@ import config from "axios";
 import { saToast } from "../helpers";
 
 const axios = config.create({
-  // baseURL: "http://localhost:8000/",
   baseURL: "https://manajemen-alfaprima.com/",
+  // baseURL: "http://localhost:8000/",
 });
 
 export const fetchingData = (

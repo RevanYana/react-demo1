@@ -23,7 +23,7 @@ const EditPassword = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    patchProfile(user.id, form, token)
+    patchProfile(user.id, { ...form, password_update: true }, token)
       .then((res) => {
         if (res.data === "success") {
           history.push("/");
