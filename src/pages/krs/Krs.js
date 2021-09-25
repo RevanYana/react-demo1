@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { fetchKrs } from "../../api";
 import Loading from "../../components/Loading";
@@ -64,7 +65,18 @@ const Krs = () => {
                         })`}
                     </td>
                     <td>{i.dosen && i.dosen.nama}</td>
-                    <td>{i.kelas && i.kelas.group_whatsapp}</td>
+                    <td>
+                      {i.kelas && (
+                        <Link
+                          to="#"
+                          onClick={() => {
+                            window.open(i.kelas.group_whatsapp);
+                          }}
+                        >
+                          {i.kelas.group_whatsapp}
+                        </Link>
+                      )}
+                    </td>
                   </tr>
                 );
               })}
