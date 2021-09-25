@@ -41,11 +41,12 @@ const Krs = () => {
       <div>
         <Table>
           <Thead>
-            <th>No</th>
-            <th>Kode Kelas</th>
-            <th>Ruangan</th>
-            <th>Jam</th>
-            <th>Dosen</th>
+            <th className="text-nowrap">No</th>
+            <th className="text-nowrap">Kode Kelas</th>
+            <th className="text-nowrap">Ruangan</th>
+            <th className="text-nowrap">Jam</th>
+            <th className="text-nowrap">Dosen</th>
+            <th className="text-nowrap">Group WA</th>
           </Thead>
           <tbody>
             {items.data &&
@@ -53,16 +54,17 @@ const Krs = () => {
               items.data.map((i, index) => {
                 return (
                   <tr key={index}>
-                    <td>{index + items.from}</td>
-                    <td>{i.kelas && i.kelas.kode}</td>
+                    <td className="text-center">{index + items.from}</td>
+                    <td className="text-center">{i.kelas && i.kelas.kode}</td>
                     <td>{i.ruangan && i.ruangan.nama}</td>
-                    <td>
+                    <td className="text-center text-nowrap">
                       {i.jamkul &&
                         `Hari ${getHari(i.jamkul.hari)} (${i.jamkul.dari} - ${
                           i.jamkul.sampai
                         })`}
                     </td>
                     <td>{i.dosen && i.dosen.nama}</td>
+                    <td>{i.kelas && i.kelas.group_whatsapp}</td>
                   </tr>
                 );
               })}
