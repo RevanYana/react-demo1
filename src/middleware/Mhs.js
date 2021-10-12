@@ -42,7 +42,7 @@ const MiddlewareMhs = (props) => {
     setToken(_token);
   };
 
-  if (isMhs) {
+  if (isMhs && token !== "") {
     return children;
   } else {
     return <Login onIsLogin={(_token) => isLogin(_token)} />;
