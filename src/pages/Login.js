@@ -7,6 +7,7 @@ const Login = (props) => {
   const { onIsLogin } = props;
 
   const [form, setForm] = useState({ is_mhs: true });
+  const [errors, setErrors] = useState({});
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -34,7 +35,11 @@ const Login = (props) => {
         }
       }
     } catch (err) {
-      console.log(err);
+      if (err.response) {
+        if (err.response.status === 422) {
+          setErrors(err.response.data.errors);
+        }
+      }
     }
   };
 
@@ -59,6 +64,7 @@ const Login = (props) => {
                 return { ...prevState, [e.target.name]: e.target.value };
               });
             }}
+            error={errors.nim}
           />
           <Input
             name="password"
@@ -69,6 +75,7 @@ const Login = (props) => {
                 return { ...prevState, [e.target.name]: e.target.value };
               });
             }}
+            error={errors.password}
           />
           <button className="btn btn-primary w-100 rounded-pill">Login</button>
         </form>
