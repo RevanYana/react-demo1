@@ -13,7 +13,7 @@ const ProfileEdit = () => {
   const [user, setUser] = useRecoilState(userState);
   const setTitle = useSetRecoilState(titleState);
 
-  const [form, setForm] = useState({ is_mhs: true });
+  const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
   const history = useHistory();
 
@@ -23,10 +23,10 @@ const ProfileEdit = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    patchProfile(user.id, form, token)
+    patchProfile(user.id, { ...form, update_profile: true }, token)
       .then((res) => {
-        if (res.data.message === "success") {
-          setUser(res.data.data);
+        if (res.data) {
+          setUser(res.data);
           history.push("/");
           saAlert("success", "Berhasil update profile");
         }
@@ -266,7 +266,16 @@ const ProfileEdit = () => {
           />
         </div>
         <div className="col-md">
-          <Input label="KTP" value={user.ktp} readOnly={true} />
+          <Input
+            label="KTP"
+            value={user.ktp}
+            onChange={(e) => {
+              setForm((prevState) => {
+                return { ...prevState, [e.target.name]: e.target.value };
+              });
+            }}
+            error={errors.ig}
+          />
         </div>
       </div>
       <div className="btn-group">

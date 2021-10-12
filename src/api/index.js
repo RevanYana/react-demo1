@@ -28,6 +28,7 @@ export const checkAuth = (token) => {
 
 // Logout
 export const postLogout = (token) => {
+  fetchingData();
   return axios.post(`/api/logout`, null, headers(token));
 };
 
@@ -38,5 +39,6 @@ export const fetchKrs = (page = 1, token, custom = "") => {
 
 // Profile
 export const patchProfile = (id, data, token) => {
+  fetchingData();
   return axios.patch(`/api/mhs/${id}`, data, headers(token));
 };

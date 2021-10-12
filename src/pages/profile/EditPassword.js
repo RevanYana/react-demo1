@@ -53,6 +53,7 @@ const EditPassword = () => {
             label="Password Lama"
             type="password"
             name="old_password"
+            placeholder="*****"
             onChange={(e) => {
               setForm((prevState) => {
                 return { ...prevState, [e.target.name]: e.target.value };
@@ -66,6 +67,7 @@ const EditPassword = () => {
             label="Password Baru"
             type="password"
             name="password"
+            placeholder="*****"
             onChange={(e) => {
               setForm((prevState) => {
                 return { ...prevState, [e.target.name]: e.target.value };
@@ -79,6 +81,7 @@ const EditPassword = () => {
             label="Ulangi Password Baru"
             type="password"
             name="password_verify"
+            placeholder="*****"
             onChange={(e) => {
               setForm((prevState) => {
                 return { ...prevState, [e.target.name]: e.target.value };
