@@ -42,8 +42,30 @@ const MiddlewareMhs = (props) => {
     setToken(_token);
   };
 
+  const [run, setRun] = useState(false);
+
+  useEffect(() => {
+    const handleRun = () => {
+      setTimeout(() => {
+        setRun(true);
+      }, 8000);
+    };
+
+    if (token !== "") {
+      handleRun();
+    }
+  }, [token]);
+
   if (isMhs && token !== "") {
-    return children;
+    if (run) {
+      return children;
+    } else {
+      return (
+        <div className="vh-100 d-flex justify-content-center align-items-center bg-primary text-white">
+          <h3>Authorization . . .</h3>
+        </div>
+      );
+    }
   } else {
     return <Login onIsLogin={(_token) => isLogin(_token)} />;
   }
