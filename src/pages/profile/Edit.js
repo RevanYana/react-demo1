@@ -28,7 +28,7 @@ const ProfileEdit = () => {
         if (res.data) {
           setUser(res.data);
           history.push("/");
-          saAlert("success", "Berhasil update profile");
+          saAlert("success", "Berhasil update profile.");
         }
       })
       .catch((err) => {
