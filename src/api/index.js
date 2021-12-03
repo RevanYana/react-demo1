@@ -1,9 +1,8 @@
 import config from "axios";
-import { saToast } from "../helpers";
+import { getOrigin, saToast } from "../helpers";
 
 const axios = config.create({
-  baseURL: "https://manajemen-alfaprima.com/",
-  // baseURL: "http://localhost:8000/",
+  baseURL: getOrigin(),
 });
 
 export const fetchingData = (
@@ -33,8 +32,15 @@ export const postLogout = (token) => {
 };
 
 // KRS
+// index
 export const fetchKrs = (page = 1, token, custom = "") => {
   return axios.get(`/api/krs?page=${page}&${custom}`, headers(token));
+};
+
+// Kelas
+// show
+export const showKelas = (id, token, custom = "") => {
+  return axios.get(`/api/kelas/${id}?${custom}`, headers(token));
 };
 
 // Profile

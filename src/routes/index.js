@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LayoutsMain from "../components/layouts/Main";
+import KelasShow from "../pages/kelas/Show";
 import Krs from "../pages/krs/Krs";
 import ProfileEdit from "../pages/profile/Edit";
 import EditPassword from "../pages/profile/EditPassword";
@@ -28,6 +29,12 @@ const Routes = () => {
         <Route path="/krs">
           <LayoutsMain>
             <Krs />
+          </LayoutsMain>
+        </Route>
+
+        <Route path="/kelas-show/:id">
+          <LayoutsMain>
+            <KelasShow />
           </LayoutsMain>
         </Route>
       </Switch>

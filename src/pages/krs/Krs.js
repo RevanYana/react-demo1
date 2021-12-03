@@ -17,7 +17,7 @@ const Krs = () => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    setTitle("Jadwal Perkuliahan (KRS)");
+    setTitle("Jadwal Perkuliahan");
   }, [setTitle]);
 
   const [items, setItems] = useState({});
@@ -47,7 +47,9 @@ const Krs = () => {
             <th className="text-nowrap">Ruangan</th>
             <th className="text-nowrap">Jam</th>
             <th className="text-nowrap">Dosen</th>
-            <th className="text-nowrap">Group WA</th>
+            <th className="text-nowrap">
+              <i className="fa fa-bars" />
+            </th>
           </Thead>
           <tbody>
             {items.data &&
@@ -65,15 +67,13 @@ const Krs = () => {
                         })`}
                     </td>
                     <td>{i.dosen && i.dosen.nama}</td>
-                    <td>
+                    <td className="text-center">
                       {i.kelas && (
                         <Link
-                          to="#"
-                          onClick={() => {
-                            window.open(i.kelas.group_whatsapp);
-                          }}
+                          to={`/kelas-show/${i.kelas.id}`}
+                          className="text-primary"
                         >
-                          {i.kelas.group_whatsapp}
+                          <i className="fa fa-eye" /> Detail
                         </Link>
                       )}
                     </td>

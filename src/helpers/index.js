@@ -1,5 +1,11 @@
 import Swal from "sweetalert2";
 
+export const getOrigin = () => {
+  return window.location.origin === "https://sia.alfaprima.id"
+    ? "https://manajemen-alfaprima.com"
+    : "http://localhost:8000";
+};
+
 export const getHari = (id) => {
   if (id === 1) {
     return "Senin";
