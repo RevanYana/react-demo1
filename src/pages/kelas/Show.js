@@ -74,7 +74,7 @@ const KelasShow = () => {
       }).length /
         12) *
         10
-    );
+    ).toFixed(2);
   };
 
   const getNilai = (jenis) => {
@@ -178,6 +178,16 @@ const KelasShow = () => {
 
         <h3>Nilai</h3>
 
+        <ul className="text-danger">
+          <li>
+            Nilai sebenarnya dari absensi akan tampil apabila semua pertemuan
+            sudah dilakukan
+          </li>
+          <li>
+            Nilai Tugas, UTS, dan UAS akan tampil apabila dosen yang mengajar
+            sudah menginputkan kedalam sistem.
+          </li>
+        </ul>
         <Table>
           <Thead>
             <th>Absensi</th>
@@ -187,7 +197,7 @@ const KelasShow = () => {
           </Thead>
           <tbody>
             <tr className="text-center">
-              <td>{getPersentasiAbsensi().toFixed(2)}</td>
+              <td>{getPersentasiAbsensi()}</td>
               <td className="text-center">{getNilai("tugas")}</td>
               <td className="text-center">{getNilai("uts")}</td>
               <td className="text-center">{getNilai("uas")}</td>

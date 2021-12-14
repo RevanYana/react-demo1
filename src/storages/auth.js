@@ -7,5 +7,5 @@ export const tokenState = atom({
 
 export const userState = atom({
   key: "userState",
-  default: [],
+  default: {},
 });

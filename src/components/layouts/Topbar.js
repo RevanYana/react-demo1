@@ -14,7 +14,7 @@ const LayoutsTopbar = () => {
       if (res.isConfirmed) {
         postLogout(token).then((res) => {
           if (res.data === "success") {
-            setToken(null);
+            setToken("");
             setUser({});
             localStorage.removeItem("_tokenMhs");
             saAlert("success", "Berhasil logout !");

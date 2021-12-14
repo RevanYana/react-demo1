@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import React, { useEffect } from "react";
+import { useRecoilState } from "recoil";
 import { checkAuth } from "../api";
 import { saAlert } from "../helpers";
 import Login from "../pages/Login";
@@ -8,13 +8,14 @@ import { tokenState, userState } from "../storages/auth";
 const MiddlewareMhs = (props) => {
   const { children } = props;
 
-  const setUser = useSetRecoilState(userState);
-  const [isMhs, setIsMhs] = useState(false);
+  const [user, setUser] = useRecoilState(userState);
   const [token, setToken] = useRecoilState(tokenState);
 
   // if exist token
   useEffect(() => {
-    setToken(localStorage.getItem("_tokenMhs"));
+    setToken(
+      localStorage.getItem("_tokenMhs") ? localStorage.getItem("_tokenMhs") : ""
+    );
   }, [setToken]);
 
   // Check token
@@ -23,41 +24,38 @@ const MiddlewareMhs = (props) => {
       try {
         const res = await checkAuth(token);
         setUser(res.data);
-        setIsMhs(true);
-        saAlert("success", "Berhasil login !");
         console.log("Is-Mhs");
       } catch (err) {
         if (err.response) {
           if (err.response.status === 401) {
-            setIsMhs(false);
+            setToken("");
+            setUser({});
+            console.log("Is-Not-Mhs");
           }
         }
       }
     };
-    checkUser();
+    if (token !== "") {
+      checkUser();
+    }
   }, [token, setUser]);
+
+  // Give alert if user already
+  useEffect(() => {
+    if (user.id) {
+      setTimeout(() => {
+        saAlert("success", "Berhasil login !");
+      }, 1000);
+    }
+  }, [user.id]);
 
   const isLogin = (_token) => {
     localStorage.setItem("_tokenMhs", _token);
     setToken(_token);
   };
 
-  const [run, setRun] = useState(false);
-
-  useEffect(() => {
-    const handleRun = () => {
-      setTimeout(() => {
-        setRun(true);
-      }, 8000);
-    };
-
-    if (token !== "") {
-      handleRun();
-    }
-  }, [token]);
-
-  if (isMhs && token !== "") {
-    if (run) {
+  if (token !== "") {
+    if (user.id) {
       return children;
     } else {
       return (
