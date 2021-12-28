@@ -44,6 +44,10 @@ export const showKelas = (id, token, custom = "") => {
 };
 
 // Profile
+export const showProfile = (id, token, custom = "") => {
+  return axios.get(`/api/mhs/${id}?${custom}`, headers(token));
+};
+// patch
 export const patchProfile = (id, data, token) => {
   fetchingData();
   return axios.patch(`/api/mhs/${id}`, data, headers(token));

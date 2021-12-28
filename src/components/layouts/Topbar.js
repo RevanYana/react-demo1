@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { postLogout } from "../../api";
@@ -24,6 +24,8 @@ const LayoutsTopbar = () => {
     });
   };
 
+  const [menuMobile, setMenuMobile] = useState(false);
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -34,26 +36,62 @@ const LayoutsTopbar = () => {
           <button
             className="navbar-toggler"
             type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
+            onClick={() => setMenuMobile(!menuMobile)}
           >
             <span className="navbar-toggler-icon" />
           </button>
           <div
-            className="collapse navbar-collapse justify-content-end"
+            className={`collapse navbar-collapse justify-content-end ${
+              menuMobile ? "show" : ""
+            }`}
             id="navbarNav"
           >
             <ul className="navbar-nav">
               <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="/">
+                <Link
+                  className="nav-link active"
+                  aria-current="page"
+                  to="/"
+                  onClick={() => setMenuMobile(false)}
+                >
                   <i className="fa fa-user" />
                   {" Profile"}
                 </Link>
               </li>
-              <li className="nav-item dropdown">
+              <li className="nav-item">
+                <Link
+                  className="nav-link active"
+                  aria-current="page"
+                  to="/krs"
+                  onClick={() => setMenuMobile(false)}
+                >
+                  <i className="fa fa-book" />
+                  {" Jadwal Perkuliahan"}
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className="nav-link active"
+                  aria-current="page"
+                  to="/pembayaran"
+                  onClick={() => setMenuMobile(false)}
+                >
+                  <i className="fa fa-dollar-sign" />
+                  {" Pembayaran"}
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  onClick={handleLogout}
+                  className="nav-link active"
+                  aria-current="page"
+                  to="#"
+                >
+                  <i className="fa fa-sign-out-alt" />
+                  {" Logout"}
+                </Link>
+              </li>
+              {/* <li className="nav-item dropdown">
                 <Link
                   className="nav-link dropdown-toggle active"
                   to="#"
@@ -75,18 +113,7 @@ const LayoutsTopbar = () => {
                     </Link>
                   </li>
                 </ul>
-              </li>
-              <li className="nav-item">
-                <Link
-                  onClick={handleLogout}
-                  className="nav-link active"
-                  aria-current="page"
-                  to="#"
-                >
-                  <i className="fa fa-sign-out-alt" />
-                  {" Logout"}
-                </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>

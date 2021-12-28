@@ -4,7 +4,7 @@ const Table = (props) => {
   const { children } = props;
   return (
     <div className="table-responsive">
-      <table className="table table-sm table-bordered table-hover">
+      <table className="table table-sm table-bordered table-striped">
         {children}
       </table>
     </div>

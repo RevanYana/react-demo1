@@ -6,6 +6,15 @@ export const getOrigin = () => {
     : "http://localhost:8000";
 };
 
+export const getCurrency = (val, n = 2, x = 0) => {
+  if (val) {
+    let num = parseInt(val);
+    let re = "\\d(?=(\\d{" + (x || 3) + "})+" + (n > 0 ? "\\." : "$") + ")";
+    return num.toFixed(Math.max(0, ~~n)).replace(new RegExp(re, "g"), "$&,");
+  }
+  return val;
+};
+
 export const getHari = (id) => {
   if (id === 1) {
     return "Senin";

@@ -57,17 +57,25 @@ const Krs = () => {
               items.data.map((i, index) => {
                 return (
                   <tr key={index}>
-                    <td className="text-center">{index + items.from}</td>
-                    <td className="text-center">{i.kelas && i.kelas.kode}</td>
-                    <td>{i.ruangan && i.ruangan.nama}</td>
-                    <td className="text-center text-nowrap">
+                    <td className="text-center align-middle text-nowrap">
+                      {index + items.from}
+                    </td>
+                    <td className="text-center align-middle text-nowrap">
+                      {i.kelas && i.kelas.kode}
+                    </td>
+                    <td className="text-center align-middle text-nowrap">
+                      {i.ruangan && i.ruangan.nama}
+                    </td>
+                    <td className="text-center align-middle text-nowrap">
                       {i.jamkul &&
-                        `Hari ${getHari(i.jamkul.hari)} (${i.jamkul.dari} - ${
+                        `Hari ${getHari(i.jamkul.hari)} (${i.jamkul.dari} s/d ${
                           i.jamkul.sampai
                         })`}
                     </td>
-                    <td>{i.dosen && i.dosen.nama}</td>
-                    <td className="text-center">
+                    <td className="text-center align-middle text-nowrap">
+                      {i.dosen && i.dosen.nama}
+                    </td>
+                    <td className="text-center align-middle text-nowrap">
                       {i.kelas && (
                         <Link
                           to={`/kelas-show/${i.kelas.id}`}
