@@ -80,6 +80,17 @@ const LayoutsTopbar = () => {
                   {" Pembayaran"}
                 </Link>
               </li>
+              {/* <li className="nav-item">
+                <Link
+                  className="nav-link active"
+                  aria-current="page"
+                  to="/ks-create"
+                  onClick={() => setMenuMobile(false)}
+                >
+                  <i className="fa fa-theater-masks" />
+                  {" Kritik & Saran"}
+                </Link>
+              </li> */}
               <li className="nav-item">
                 <Link
                   onClick={handleLogout}

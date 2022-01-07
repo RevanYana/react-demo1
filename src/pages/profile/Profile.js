@@ -72,11 +72,13 @@ const Profile = () => {
               <td>{" : "}</td>
               <td>
                 {mhs.disc && mhs.disc.disc_1 ? (
-                  <iframe
-                    title="disc_1"
-                    src={`https://manajemen-alfaprima.com/storage/disc_mhs/disc_1_${user.nim}.pdf`}
-                    className="w-100 vh-100"
-                  />
+                  <div className="ratio ratio-1x1">
+                    <iframe
+                      title="disc_1"
+                      src={`https://manajemen-alfaprima.com/storage/disc_mhs/disc_1_${user.nim}.pdf`}
+                      allowfullscreen
+                    />
+                  </div>
                 ) : (
                   "No Data"
                 )}
@@ -87,11 +89,13 @@ const Profile = () => {
               <td>{" : "}</td>
               <td>
                 {mhs.disc && mhs.disc.disc_2 ? (
-                  <iframe
-                    title="disc_2"
-                    src={`https://manajemen-alfaprima.com/storage/disc_mhs/disc_2_${user.nim}.pdf`}
-                    className="w-100 vh-100"
-                  />
+                  <div className="ratio ratio-1x1">
+                    <iframe
+                      title="disc_2"
+                      src={`https://manajemen-alfaprima.com/storage/disc_mhs/disc_2_${user.nim}.pdf`}
+                      allowfullscreen
+                    />
+                  </div>
                 ) : (
                   "No Data"
                 )}

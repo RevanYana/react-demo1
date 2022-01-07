@@ -52,3 +52,17 @@ export const patchProfile = (id, data, token) => {
   fetchingData();
   return axios.patch(`/api/mhs/${id}`, data, headers(token));
 };
+
+// ks
+// store
+export const postKs = (data, token, custom = "") => {
+  fetchingData();
+  return axios.post(`/api/ks?${custom}`, data, headers(token));
+};
+
+// penilaian dosen
+// store
+export const postPenilaianDosen = (data, token, custom = "") => {
+  fetchingData();
+  return axios.post(`/api/penilaian-dosen?${custom}`, data, headers(token));
+};

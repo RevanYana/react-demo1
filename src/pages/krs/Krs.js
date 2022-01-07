@@ -77,12 +77,23 @@ const Krs = () => {
                     </td>
                     <td className="text-center align-middle text-nowrap">
                       {i.kelas && (
-                        <Link
-                          to={`/kelas-show/${i.kelas.id}`}
-                          className="text-primary"
-                        >
-                          <i className="fa fa-eye" /> Detail
-                        </Link>
+                        <>
+                          <Link
+                            to={`/kelas-show/${i.kelas.id}`}
+                            className="text-primary"
+                          >
+                            <i className="fa fa-eye" /> Detail
+                          </Link>
+                          <span className="ms-1" />
+                          <Link
+                            to={`/kelas-penilaian-dosen/${
+                              i.kelas && i.kelas.id
+                            }`}
+                            className="text-primary"
+                          >
+                            <i className="fa fa-theater-masks" /> Nilai Dosen
+                          </Link>
+                        </>
                       )}
                     </td>
                   </tr>
