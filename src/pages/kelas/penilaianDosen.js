@@ -4,6 +4,7 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { postPenilaianDosen, showKelas } from "../../api";
 import Radio from "../../components/Radio";
 import Table, { Thead } from "../../components/Table";
+import Textarea from "../../components/Textarea";
 import { saAlert } from "../../helpers";
 import { titleState } from "../../storages";
 import { tokenState } from "../../storages/auth";
@@ -45,7 +46,7 @@ const KelasPenilaianDosen = () => {
       .then((res) => {
         if (res.data === "success") {
           setErrors({});
-          fetchDataKelas()
+          fetchDataKelas();
           saAlert(
             "success",
             `Berhasil mengisi nilai Dosen kelas ${items.kode}`
@@ -217,7 +218,9 @@ const KelasPenilaianDosen = () => {
                 value="1"
                 name="penguasaan_materi"
                 id="penguasaan_materi_1"
-                checked={form && form.penguasaan_materi && form.penguasaan_materi}
+                checked={
+                  form && form.penguasaan_materi && form.penguasaan_materi
+                }
                 onChange={(e) =>
                   setForm((prevState) => {
                     return { ...prevState, [e.target.name]: e.target.value };
@@ -230,7 +233,9 @@ const KelasPenilaianDosen = () => {
                 value="2"
                 name="penguasaan_materi"
                 id="penguasaan_materi_2"
-                checked={form && form.penguasaan_materi && form.penguasaan_materi}
+                checked={
+                  form && form.penguasaan_materi && form.penguasaan_materi
+                }
                 onChange={(e) =>
                   setForm((prevState) => {
                     return { ...prevState, [e.target.name]: e.target.value };
@@ -243,7 +248,9 @@ const KelasPenilaianDosen = () => {
                 value="3"
                 name="penguasaan_materi"
                 id="penguasaan_materi_3"
-                checked={form && form.penguasaan_materi && form.penguasaan_materi}
+                checked={
+                  form && form.penguasaan_materi && form.penguasaan_materi
+                }
                 onChange={(e) =>
                   setForm((prevState) => {
                     return { ...prevState, [e.target.name]: e.target.value };
@@ -256,7 +263,9 @@ const KelasPenilaianDosen = () => {
                 value="4"
                 name="penguasaan_materi"
                 id="penguasaan_materi_4"
-                checked={form && form.penguasaan_materi && form.penguasaan_materi}
+                checked={
+                  form && form.penguasaan_materi && form.penguasaan_materi
+                }
                 onChange={(e) =>
                   setForm((prevState) => {
                     return { ...prevState, [e.target.name]: e.target.value };
@@ -343,7 +352,9 @@ const KelasPenilaianDosen = () => {
                 value="1"
                 name="semangat_mengajar"
                 id="semangat_mengajar_1"
-                checked={form && form.semangat_mengajar && form.semangat_mengajar}
+                checked={
+                  form && form.semangat_mengajar && form.semangat_mengajar
+                }
                 onChange={(e) =>
                   setForm((prevState) => {
                     return { ...prevState, [e.target.name]: e.target.value };
@@ -356,7 +367,9 @@ const KelasPenilaianDosen = () => {
                 value="2"
                 name="semangat_mengajar"
                 id="semangat_mengajar_2"
-                checked={form && form.semangat_mengajar && form.semangat_mengajar}
+                checked={
+                  form && form.semangat_mengajar && form.semangat_mengajar
+                }
                 onChange={(e) =>
                   setForm((prevState) => {
                     return { ...prevState, [e.target.name]: e.target.value };
@@ -369,7 +382,9 @@ const KelasPenilaianDosen = () => {
                 value="3"
                 name="semangat_mengajar"
                 id="semangat_mengajar_3"
-                checked={form && form.semangat_mengajar && form.semangat_mengajar}
+                checked={
+                  form && form.semangat_mengajar && form.semangat_mengajar
+                }
                 onChange={(e) =>
                   setForm((prevState) => {
                     return { ...prevState, [e.target.name]: e.target.value };
@@ -382,7 +397,9 @@ const KelasPenilaianDosen = () => {
                 value="4"
                 name="semangat_mengajar"
                 id="semangat_mengajar_4"
-                checked={form && form.semangat_mengajar && form.semangat_mengajar}
+                checked={
+                  form && form.semangat_mengajar && form.semangat_mengajar
+                }
                 onChange={(e) =>
                   setForm((prevState) => {
                     return { ...prevState, [e.target.name]: e.target.value };
@@ -459,6 +476,22 @@ const KelasPenilaianDosen = () => {
               )}
             </td>
           </tr>
+          <tr>
+            <td className="text-center">6</td>
+            <td>Kritik & Saran</td>
+            <td className="text-center">
+              <Textarea
+                name="kritik_saran"
+                placeholder="Kritik dan Saran anda . . . ."
+                value={form && form.kritik_saran && form.kritik_saran}
+                onChange={(e) =>
+                  setForm((prevState) => {
+                    return { ...prevState, [e.target.name]: e.target.value };
+                  })
+                }
+              />
+            </td>
+          </tr>
         </tbody>
       </Table>
 
@@ -479,11 +512,7 @@ const KelasPenilaianDosen = () => {
         >
           Simpan
         </button>
-        <Link
-          to="/krs"
-          type="button"
-          className="btn btn-sm btn-danger"
-        >
+        <Link to="/krs" type="button" className="btn btn-sm btn-danger">
           Kembali
         </Link>
       </div>
