@@ -30,6 +30,28 @@ const Pembayaran = () => {
     fetchData();
   }, [user.id, token]);
 
+  const getBayarDpp = () => {
+    if (items.biaya) {
+      if (items.biaya.tanggal_du_3) {
+        return formatDate(items.biaya.tanggal_du_3);
+      } else if (items.biaya.tanggal_du_2) {
+        return formatDate(items.biaya.tanggal_du_2);
+      } else if (items.biaya.tanggal_du_1) {
+        return formatDate(items.biaya.tanggal_du_1);
+      }
+    }
+  };
+
+  const getAngsuran = () => {
+    if (items.angsuran_1) {
+      return getCurrency(items.angsuran_1.angsuran, 0);
+    } else if (items.angsuran_2) {
+      return getCurrency(items.angsuran_2.angsuran, 0);
+    } else if (items.biaya) {
+      return items.biaya && getCurrency(items.biaya.angsuran, 0);
+    }
+  };
+
   return (
     <>
       {items.id ? (
@@ -102,13 +124,11 @@ const Pembayaran = () => {
                       0
                     )}
                   </td>
-                  <td className="text-nowrap">-</td>
+                  <td className="text-nowrap">{getBayarDpp()}</td>
                 </tr>
                 <tr>
                   <td className="text-nowrap">Angsuran</td>
-                  <td className="text-nowrap">
-                    Rp {items.biaya && getCurrency(items.biaya.angsuran, 0)}
-                  </td>
+                  <td className="text-nowrap">Rp {getAngsuran()}</td>
                   <td className="text-nowrap">-</td>
                 </tr>
               </tbody>
