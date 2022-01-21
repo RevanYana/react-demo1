@@ -13,10 +13,19 @@ const KsCreate = () => {
 
   useEffect(() => setTitle("Buat Kritik & Saran"), [setTitle]);
 
-  const [form, setForm] = useState({});
+  const [form, setForm] = useState({
+    no_hp: "",
+    bagian: "",
+    judul: "",
+    isi: "",
+    foto: "",
+  });
+
   const [errors, setErrors] = useState({});
 
   const tagForm = useRef();
+
+  const [img, setImg] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,22 +34,30 @@ const KsCreate = () => {
     formData.append("foto", form.foto);
 
     postKs(
-      formData,
+      form.foto !== '' && formData,
       token,
-      `no_hp=${form.no_hp ? form.no_hp : ""}&bagian=${
-        form.bagian ? form.bagian : ""
-      }&judul=${form.judul ? form.judul : ""}&isi=${form.isi ? form.isi : ""}`
+      `no_hp=${form.no_hp}&bagian=${form.bagian}&judul=${form.judul}&isi=${form.isi}&is_mhs=true`
     )
       .then((res) => {
-        console.log(res.data);
         if (res.data === "success") {
           tagForm.current && tagForm.current.reset();
-          setForm({});
+          setForm({
+            no_hp: "",
+            bagian: "",
+            judul: "",
+            isi: "",
+            foto: "",
+          });
+          setImg("");
           setErrors({});
-          saAlert("Berhasil kirim data kritik dan saran !");
+          saAlert("success", "Berhasil kirim data kritik dan saran !");
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        if (err.response && err.response.data) {
+          setErrors(err.response.data.errors);
+        }
+      });
   };
 
   return (
@@ -111,15 +128,17 @@ const KsCreate = () => {
         />
         <div className="row">
           <div className="col-md-4">
+            <img src={img} className="img-fluid" alt="" />
             <Input
               label="Foto (Optional)"
               name="foto"
               type="file"
-              onChange={(e) =>
+              onChange={(e) => {
+                setImg(URL.createObjectURL(e.target.files[0]));
                 setForm((prevState) => {
                   return { ...prevState, [e.target.name]: e.target.files[0] };
-                })
-              }
+                });
+              }}
               error={errors.foto}
             />
           </div>

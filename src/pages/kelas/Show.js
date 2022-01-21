@@ -190,10 +190,10 @@ const KelasShow = () => {
         </ul>
         <Table>
           <Thead>
-            <th>Absensi</th>
-            <th>Tugas</th>
-            <th>UTS</th>
-            <th>UAS</th>
+            <th>Absensi ({items.persentasi_kehadiran}%)</th>
+            <th>Tugas ({items.persentasi_tugas}%)</th>
+            <th>UTS ({items.persentasi_uts}%)</th>
+            <th>UAS ({items.persentasi_uas}%)</th>
           </Thead>
           <tbody>
             <tr className="text-center">

@@ -80,7 +80,7 @@ const LayoutsTopbar = () => {
                   {" Pembayaran"}
                 </Link>
               </li>
-              {/* <li className="nav-item">
+              <li className="nav-item">
                 <Link
                   className="nav-link active"
                   aria-current="page"
@@ -90,7 +90,7 @@ const LayoutsTopbar = () => {
                   <i className="fa fa-theater-masks" />
                   {" Kritik & Saran"}
                 </Link>
-              </li> */}
+              </li>
               <li className="nav-item">
                 <Link
                   onClick={handleLogout}
