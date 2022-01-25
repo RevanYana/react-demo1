@@ -60,7 +60,7 @@ const KelasShow = () => {
   };
 
   const getPersentasiAbsensi = () => {
-    return (
+    let data =
       items.pengajaran &&
       items.pengajaran.length > 0 &&
       (items.pengajaran.filter((p) => {
@@ -73,8 +73,13 @@ const KelasShow = () => {
         );
       }).length /
         12) *
-        10
-    ).toFixed(2);
+        10;
+
+    if (data) {
+      return data.toFixed(2);
+    }
+
+    return "";
   };
 
   const getNilai = (jenis) => {
