@@ -67,7 +67,6 @@ const SemesterKrs = (props) => {
             <th className="text-nowrap">Ruangan</th>
             <th className="text-nowrap">Jam</th>
             <th className="text-nowrap">Dosen</th>
-            <th className="text-nowrap">Semester</th>
             <th className="text-nowrap">
               <i className="fa fa-bars" />
             </th>
@@ -97,9 +96,6 @@ const SemesterKrs = (props) => {
                       </td>
                       <td className="text-center align-middle text-nowrap">
                         {i.dosen && i.dosen.nama}
-                      </td>
-                      <td className="text-center align-middle text-nowrap">
-                        {i.kelas && i.kelas.semester}
                       </td>
                       <td className="text-center align-middle text-nowrap">
                         {i.kelas && (
