@@ -21,7 +21,7 @@ const Krs = () => {
   }, [setTitle]);
 
   const [items, setItems] = useState({});
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState('all');
 
   const fetchData = useCallback(async () => {
     try {
