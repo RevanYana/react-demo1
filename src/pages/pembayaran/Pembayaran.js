@@ -11,7 +11,7 @@ const Pembayaran = () => {
   const token = useRecoilValue(tokenState);
 
   const setTitlte = useSetRecoilState(titleState);
-  useEffect(() => setTitlte("Data Pembayaran"), []);
+  useEffect(() => setTitlte("Data Pembayaran"), [setTitlte]);
 
   const [items, setItems] = useState({});
 

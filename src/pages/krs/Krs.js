@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { fetchKrs } from "../../api";
 import Loading from "../../components/Loading";
-import NoData from "../../components/NoData";
-import Pagination from "../../components/Pagination";
 import Table, { Thead } from "../../components/Table";
 import { getHari } from "../../helpers";
 import { titleState } from "../../storages";
@@ -21,7 +19,7 @@ const Krs = () => {
   }, [setTitle]);
 
   const [items, setItems] = useState({});
-  const [page, setPage] = useState("all");
+  const [page] = useState("all");
 
   const fetchData = useCallback(async () => {
     try {

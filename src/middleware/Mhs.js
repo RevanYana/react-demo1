@@ -38,7 +38,7 @@ const MiddlewareMhs = (props) => {
     if (token !== "") {
       checkUser();
     }
-  }, [token, setUser]);
+  }, [token, setUser, setToken]);
 
   // Give alert if user already
   useEffect(() => {
