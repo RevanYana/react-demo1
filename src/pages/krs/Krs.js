@@ -21,7 +21,7 @@ const Krs = () => {
   }, [setTitle]);
 
   const [items, setItems] = useState({});
-  const [page, setPage] = useState('all');
+  const [page, setPage] = useState("all");
 
   const fetchData = useCallback(async () => {
     try {
@@ -55,10 +55,9 @@ const SemesterKrs = (props) => {
   const { items, semester } = props;
 
   if (
-    items.data &&
-    items.data.length > 0 &&
-    items.data.filter((i) => i.kelas && i.kelas.semester === semester).length >
-      0
+    items &&
+    items.length > 0 &&
+    items.filter((i) => i.kelas && i.kelas.semester === semester).length > 0
   ) {
     return (
       <div className="mb-3">
@@ -76,15 +75,15 @@ const SemesterKrs = (props) => {
             </th>
           </Thead>
           <tbody>
-            {items.data &&
-              items.data.length > 0 &&
-              items.data
+            {items &&
+              items.length > 0 &&
+              items
                 .filter((i) => i.kelas && i.kelas.semester === semester)
                 .map((i, index) => {
                   return (
                     <tr key={index}>
                       <td className="text-center align-middle text-nowrap">
-                        {index + items.from}
+                        {index + 1}
                       </td>
                       <td className="text-center align-middle text-nowrap">
                         {i.kelas && i.kelas.kode}
