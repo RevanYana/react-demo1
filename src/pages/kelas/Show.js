@@ -73,7 +73,7 @@ const KelasShow = () => {
         );
       }).length /
         12) *
-        10;
+        100;
 
     if (data) {
       return data.toFixed(2);
@@ -93,6 +93,19 @@ const KelasShow = () => {
             return k.nilai[jenis];
           } else return null;
         })
+    );
+  };
+
+  const getNilaiTotal = () => {
+    return (
+      parseFloat(
+        ((getPersentasiAbsensi() * items.persentasi_kehadiran) / 100).toFixed(2)
+      ) +
+      parseFloat(
+        ((getNilai("tugas") * items.persentasi_tugas) / 100).toFixed(2)
+      ) +
+      parseFloat(((getNilai("uts") * items.persentasi_uts) / 100).toFixed(2)) +
+      parseFloat(((getNilai("uas") * items.persentasi_uas) / 100).toFixed(2))
     );
   };
 
@@ -142,7 +155,7 @@ const KelasShow = () => {
 
         <Table>
           <thead>
-            <tr>
+            <tr className="text-center">
               <th>Pertemuan</th>
               <th>1</th>
               <th>2</th>
@@ -161,7 +174,7 @@ const KelasShow = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr className="text-center">
               <td>Status</td>
               <td>{getAbsensi("1")}</td>
               <td>{getAbsensi("2")}</td>
@@ -196,19 +209,128 @@ const KelasShow = () => {
         <Table>
           <Thead>
             <th>Absensi ({items.persentasi_kehadiran}%)</th>
+            <th>Persentasi Absensi</th>
             <th>Tugas ({items.persentasi_tugas}%)</th>
+            <th>Persentasi Tugas</th>
             <th>UTS ({items.persentasi_uts}%)</th>
+            <th>Persentasi UTS</th>
             <th>UAS ({items.persentasi_uas}%)</th>
+            <th>Persentasi UAS</th>
+            <th>Total</th>
+            <th>Angka</th>
           </Thead>
           <tbody>
-            <tr className="text-center">
-              <td>{getPersentasiAbsensi()}</td>
+            <tr>
+              <td className="text-center">{getPersentasiAbsensi()}</td>
+              <td className="text-center">
+                {(
+                  (getPersentasiAbsensi() * items.persentasi_kehadiran) /
+                  100
+                ).toFixed(2)}
+              </td>
               <td className="text-center">{getNilai("tugas")}</td>
+              <td className="text-center">
+                {((getNilai("tugas") * items.persentasi_tugas) / 100).toFixed(
+                  2
+                )}
+              </td>
               <td className="text-center">{getNilai("uts")}</td>
+              <td className="text-center">
+                {((getNilai("uts") * items.persentasi_uts) / 100).toFixed(2)}
+              </td>
               <td className="text-center">{getNilai("uas")}</td>
+              <td className="text-center">
+                {((getNilai("uas") * items.persentasi_uas) / 100).toFixed(2)}
+              </td>
+              <td className="text-center">{getNilaiTotal()}</td>
+              <td className="text-center">
+                {parseFloat(getNilaiTotal()) >= 85 && "A"}
+                {parseFloat(getNilaiTotal()) < 85 &&
+                  parseFloat(getNilaiTotal()) >= 75 &&
+                  "B"}
+                {parseFloat(getNilaiTotal()) < 75 &&
+                  parseFloat(getNilaiTotal()) >= 65 &&
+                  "C"}
+                {parseFloat(getNilaiTotal()) < 65 &&
+                  parseFloat(getNilaiTotal()) >= 45 &&
+                  "D"}
+                {parseFloat(getNilaiTotal()) < 45 &&
+                  parseFloat(getNilaiTotal()) >= 0 &&
+                  "E"}
+              </td>
             </tr>
           </tbody>
         </Table>
+
+        <div className="row mb-3">
+          <div className="col p-3">
+            <table className="table table-sm">
+              <thead className="bg-light">
+                <tr>
+                  <th colSpan="3">Keterangan</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>85 s/d 100</td>
+                  <td>:</td>
+                  <td>A (Sangat Memuaskan)</td>
+                </tr>
+                <tr>
+                  <td>{`75 s/d <85`}</td>
+                  <td>:</td>
+                  <td>B (Memuaskan)</td>
+                </tr>
+                <tr>
+                  <td>{`65 s/d <75`}</td>
+                  <td>:</td>
+                  <td>C (Cukup)</td>
+                </tr>
+                <tr>
+                  <td>{`45 s/d <65`}</td>
+                  <td>:</td>
+                  <td>D (Kurang Memuaskan)</td>
+                </tr>
+                <tr>
+                  <td>{`0 s/d <45`}</td>
+                  <td>:</td>
+                  <td>E (Sangat Kurang)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div className="col p-3">
+            <table className="table table-sm">
+              <thead className="bg-light">
+                <tr>
+                  <th colSpan="3">Bobot Nilai</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Nilai Absensi</td>
+                  <td>:</td>
+                  <td>{items.persentasi_kehadiran}%</td>
+                </tr>
+                <tr>
+                  <td>Nilai Tugas</td>
+                  <td>:</td>
+                  <td>{items.persentasi_tugas}%</td>
+                </tr>
+                <tr>
+                  <td>UTS</td>
+                  <td>:</td>
+                  <td>{items.persentasi_uts}%</td>
+                </tr>
+                <tr>
+                  <td>UAS</td>
+                  <td>:</td>
+                  <td>{items.persentasi_uas}%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
 
         <div className="btn-group">
           <Link to="/krs" className="btn btn-danger">

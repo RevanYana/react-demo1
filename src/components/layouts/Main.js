@@ -13,7 +13,7 @@ const LayoutsMain = (props) => {
   return (
     <>
       <LayoutsTopbar />
-      <div className="container bg-white py-4 shadow-sm">
+      <div className="container bg-white py-4 shadow-sm my-4">
         <span className="text-secondary">
           <i className="fa fa-user" /> : {user.nama}
         </span>
@@ -25,7 +25,7 @@ const LayoutsMain = (props) => {
       <footer className="py-3 bg-primary">
         <div className="container my-auto">
           <div className="text-center my-auto text-white">
-            <span>Copyright © Alfa Prima 2021</span>
+            <span>Copyright © Alfa Prima {new Date().getFullYear()}</span>
           </div>
         </div>
       </footer>

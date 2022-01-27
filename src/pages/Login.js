@@ -21,6 +21,13 @@ const Login = (props) => {
             "Akun error segera hubungi bagian Akademik dan Kemahasiswaan !",
             "Hubungi bagian Akademik dan Kemahasiswaan agar akun anda dapat segera diperbaiki !"
           );
+        } else if (res.data.message === "inactive") {
+          // Fail
+          saAlert(
+            "warning",
+            "Akun anda sedang tidak aktif",
+            "Hubungi bagian Akademik untuk mengaktifkan akun kembali."
+          );
         } else if (res.data.message === "fail") {
           // Fail
           saAlert(
