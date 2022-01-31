@@ -84,6 +84,17 @@ const LayoutsTopbar = () => {
                 <Link
                   className="nav-link active"
                   aria-current="page"
+                  to="/progkam"
+                  onClick={() => setMenuMobile(false)}
+                >
+                  <i className="fa fa-heart" />
+                  {" Nilai TAK"}
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className="nav-link active"
+                  aria-current="page"
                   to="/ks-create"
                   onClick={() => setMenuMobile(false)}
                 >

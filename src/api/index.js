@@ -66,3 +66,8 @@ export const postPenilaianDosen = (data, token, custom = "") => {
   fetchingData();
   return axios.post(`/api/penilaian-dosen?${custom}`, data, headers(token));
 };
+
+// index
+export const fetchProgkam = (page = 1, token, custom = "") => {
+  return axios.get(`/api/progkam?page=${page}&${custom}`, headers(token));
+};

@@ -9,6 +9,7 @@ import Pembayaran from "../pages/pembayaran/Pembayaran";
 import ProfileEdit from "../pages/profile/Edit";
 import EditPassword from "../pages/profile/EditPassword";
 import Profile from "../pages/profile/Profile";
+import Progkam from "../pages/progkam/Progkam";
 
 const Routes = () => {
   return (
@@ -69,6 +70,14 @@ const Routes = () => {
           </LayoutsMain>
         </Route>
         {/* End Penilaian Dosen */}
+
+        {/* Progkam */}
+        <Route path="/progkam">
+          <LayoutsMain>
+            <Progkam />
+          </LayoutsMain>
+        </Route>
+        {/* End Progkam */}
       </Switch>
     </Router>
   );
