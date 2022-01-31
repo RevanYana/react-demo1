@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
-import { checkAuth } from "../api";
+import { checkAuth, postLogout } from "../api";
 import { saAlert } from "../helpers";
 import Login from "../pages/Login";
 import { tokenState, userState } from "../storages/auth";
@@ -20,11 +20,30 @@ const MiddlewareMhs = (props) => {
 
   // Check token
   useEffect(() => {
+    const handleLogout = () => {
+      postLogout(token).then((res) => {
+        if (res.data === "success") {
+          setToken("");
+          setUser({});
+          localStorage.removeItem("_tokenMhs");
+          saAlert(
+            "success",
+            "Akun anda sedang tidak aktif",
+            "Hubungi bagian Akademik untuk mengaktifkan akun kembali."
+          );
+        }
+      });
+    };
+
     const checkUser = async () => {
       try {
         const res = await checkAuth(token);
-        setUser(res.data);
-        console.log("Is-Mhs");
+        if (res.data && res.data.id) {
+          setUser(res.data);
+          console.log("Is-Mhs");
+        } else {
+          handleLogout();
+        }
       } catch (err) {
         if (err.response) {
           if (err.response.status === 401) {
