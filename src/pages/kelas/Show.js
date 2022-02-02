@@ -332,6 +332,73 @@ const KelasShow = () => {
           </div>
         </div>
 
+        {items.id === 311 && (
+          <>
+            <h3 className="text-center">Materi Kelas {items.kode}</h3>
+
+            <h5>Cara Installasi Laravel</h5>
+
+            <h5>App yang diperlukan</h5>
+            <ol>
+              <li>VS Code (Sebagi code editor)</li>
+              <li>XAMPP (recomended versi terbaru)</li>
+              <li>Composer</li>
+              <li>Git Bash (Pengguna windows)</li>
+            </ol>
+
+            <p>
+              Setelah semua app yang diperlukan sudah terinstall silahkan lanjut
+              ke proses installasi laravel
+            </p>
+
+            <ol>
+              <li>
+                <h5>
+                  Ketikan ini di terminal kalian (pengguna windows gunakan git
+                  bash)
+                </h5>
+                <p className="text-secondary">
+                  composer create-project --prefer-dist laravel/laravel:^8.0
+                  first-app
+                </p>
+                <p>
+                  Note :
+                  <ul>
+                    <li>
+                      "first-app" adalah nama dari folder yang akan diinstall
+                    </li>
+                    <li>Versi Laravel yang digunakan adalah Versi 8</li>
+                  </ul>
+                </p>
+              </li>
+              <li>
+                <h5>Buka folder first-app di VS Code kalian.</h5>
+                <p>
+                  Pilih menu file lalu pilih Open Folder kemudian pilih folder
+                  first-app yang baru saja kalian buat
+                </p>
+              </li>
+              <li>
+                <h5>
+                  Buka terminal VS Code lalu ketikan "php artisan serve" untuk
+                  runing web server laravel kalian.
+                </h5>
+                <p>Pilih menu terminal lalu pilih new terminal</p>
+              </li>
+              <li>
+                <h5>Buka browser kalian lalu akses http://localhost:8000/</h5>
+              </li>
+              <li>
+                <h5>Sukses, laravel berhasil terinstall di PC kalian.</h5>
+                <p>
+                  Silahkan lakukan proses pengkodean sesuai dengan contoh yang
+                  sudah saya berikan
+                </p>
+              </li>
+            </ol>
+          </>
+        )}
+
         <div className="btn-group">
           <Link to="/krs" className="btn btn-danger">
             Kembali
