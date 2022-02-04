@@ -38,6 +38,13 @@ const Krs = () => {
   if (isLoaded) {
     return (
       <>
+        <div className="mb-2">
+          <h5>Kode Warna Background Mata Kuliah :</h5>
+          <span className="px-2 text-white bg-success">Praktek</span>
+          {` | `}
+          <span className="px-2 text-white bg-info">Teori</span>
+        </div>
+
         <SemesterKrs items={items} semester={4} />
         <SemesterKrs items={items} semester={3} />
         <SemesterKrs items={items} semester={2} />
@@ -64,6 +71,7 @@ const SemesterKrs = (props) => {
           <Thead>
             <th className="text-nowrap">No</th>
             <th className="text-nowrap">Kode Kelas</th>
+            <th className="text-nowrap">Mata Kuliah</th>
             <th className="text-nowrap">Ruangan</th>
             <th className="text-nowrap">Jam</th>
             <th className="text-nowrap">Dosen</th>
@@ -84,6 +92,19 @@ const SemesterKrs = (props) => {
                       </td>
                       <td className="text-center align-middle text-nowrap">
                         {i.kelas && i.kelas.kode}
+                      </td>
+                      <td
+                        className={`text-center align-middle ${
+                          i.matkul &&
+                          i.matkul.jenis_matkul === 1 &&
+                          "text-white bg-success"
+                        } ${
+                          i.matkul &&
+                          i.matkul.jenis_matkul === 2 &&
+                          "text-white bg-info"
+                        }`}
+                      >
+                        {i.matkul && i.matkul.nama}
                       </td>
                       <td className="text-center align-middle text-nowrap">
                         {i.ruangan && i.ruangan.nama}

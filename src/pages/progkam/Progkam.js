@@ -31,7 +31,7 @@ const Progkam = () => {
     let nilai = 0;
     items.length > 0 &&
       items.map((i) => {
-        i.mhs && i.mhs.length === 1
+        return i.mhs && i.mhs.length === 1
           ? i.mhs[0].pivot && (nilai += i.mhs[0].pivot.nilai)
           : (nilai += i.nilai);
       });
