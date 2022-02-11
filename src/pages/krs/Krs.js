@@ -14,9 +14,7 @@ const Krs = () => {
   const token = useRecoilValue(tokenState);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  useEffect(() => {
-    setTitle("Jadwal Perkuliahan");
-  }, [setTitle]);
+  useEffect(() => setTitle("Jadwal Perkuliahan"), [setTitle]);
 
   const [items, setItems] = useState({});
   const [page] = useState("all");

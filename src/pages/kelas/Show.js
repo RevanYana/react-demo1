@@ -77,9 +77,7 @@ const KelasShow = () => {
 
     if (data) {
       return data.toFixed(2);
-    }
-
-    return "";
+    } else return "";
   };
 
   const getNilai = (jenis) => {
