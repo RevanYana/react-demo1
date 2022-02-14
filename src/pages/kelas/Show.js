@@ -35,26 +35,43 @@ const KelasShow = () => {
       items.pengajaran &&
       items.pengajaran.length > 0 &&
       items.pengajaran
-        .filter((p) => p.pertemuan === pertemuan && p.status !== 9)
+        .filter((p) => {
+          return (
+            String(p.pertemuan) === String(pertemuan) &&
+            parseInt(p.status) !== 9
+          );
+        })
         .map((p) => {
-          if (p.absensi && p.absensi.length > 0) {
-            return p.absensi
-              .filter((a) => a.mhs_id === user.id)
-              .map((a, index) => {
-                return (
-                  <span key={index}>
-                    {a.status === "1" && (
+          return p.absensi
+            .filter((a) => {
+              return String(a.pertemuan) === String(pertemuan);
+            })
+            .map((a, index) => {
+              return (
+                <span key={index}>
+                  {String(a.status) === "1" && (
+                    <>
                       <span className="text-success">H</span>
-                    )}
-                    {a.status === "2" && <span className="text-info">I</span>}
-                    {a.status === "3" && (
+                    </>
+                  )}
+                  {String(a.status) === "2" && (
+                    <>
+                      <span className="text-info">I</span>
+                    </>
+                  )}
+                  {String(a.status) === "3" && (
+                    <>
                       <span className="text-warning">S</span>
-                    )}
-                    {a.status === "4" && <span className="text-danger">A</span>}
-                  </span>
-                );
-              });
-          } else return null;
+                    </>
+                  )}
+                  {String(a.status) === "4" && (
+                    <>
+                      <span className="text-danger">A</span>
+                    </>
+                  )}
+                </span>
+              );
+            });
         })
     );
   };
