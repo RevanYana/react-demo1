@@ -71,6 +71,24 @@ const SemesterKrs = (props) => {
     return (parseFloat(total) / parseFloat(krs_length)).toFixed(2);
   };
 
+  const getNilai = (nilai) => {
+    if (nilai && nilai.grade) {
+      if (parseInt(nilai.grade) === 1) {
+        return "E";
+      } else if (parseInt(nilai.grade) === 1) {
+        return "D";
+      } else if (parseInt(nilai.grade) === 2) {
+        return "C";
+      } else if (parseInt(nilai.grade) === 3) {
+        return "B";
+      } else if (parseInt(nilai.grade) === 4) {
+        return "A";
+      }
+    } else {
+      return "-";
+    }
+  };
+
   if (
     items &&
     items.length > 0 &&
@@ -133,7 +151,7 @@ const SemesterKrs = (props) => {
                         {i.dosen && i.dosen.nama}
                       </td>
                       <td className="text-center align-middle text-nowrap">
-                        {i.nilai && i.nilai.grade ? i.nilai.grade : "-"}
+                        {getNilai(i.nilai)}
                       </td>
                       <td className="text-center align-middle text-nowrap">
                         {i.kelas && (
