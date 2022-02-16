@@ -57,6 +57,20 @@ const Krs = () => {
 const SemesterKrs = (props) => {
   const { items, semester } = props;
 
+  const getIp = (krs) => {
+    let total =
+      krs &&
+      krs.length > 0 &&
+      items
+        .filter(
+          (i) => parseInt(i.semester) === semester && i.nilai && i.nilai.grade
+        )
+        .map((i) => i.nilai.grade)
+        .reduce((total, curr) => total + curr, 0);
+    let krs_length = krs.length;
+    return (parseFloat(total) / parseFloat(krs_length)).toFixed(2);
+  };
+
   if (
     items &&
     items.length > 0 &&
@@ -65,6 +79,7 @@ const SemesterKrs = (props) => {
     return (
       <div className="mb-3">
         <h1>Semester {semester}</h1>
+        <span>IP {getIp(items)}</span>
         <Table>
           <Thead>
             <th className="text-nowrap">No</th>
@@ -73,6 +88,7 @@ const SemesterKrs = (props) => {
             <th className="text-nowrap">Ruangan</th>
             <th className="text-nowrap">Jam</th>
             <th className="text-nowrap">Dosen</th>
+            <th className="text-nowrap">Nilai</th>
             <th className="text-nowrap">
               <i className="fa fa-bars" />
             </th>
@@ -115,6 +131,9 @@ const SemesterKrs = (props) => {
                       </td>
                       <td className="text-center align-middle text-nowrap">
                         {i.dosen && i.dosen.nama}
+                      </td>
+                      <td className="text-center align-middle text-nowrap">
+                        {i.nilai && i.nilai.grade ? i.nilai.grade : "-"}
                       </td>
                       <td className="text-center align-middle text-nowrap">
                         {i.kelas && (
