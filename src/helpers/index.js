@@ -33,6 +33,39 @@ export const getHari = (id) => {
   }
 };
 
+export const getGrade = (nilai) => {
+  if (nilai) {
+    if (nilai === 1) {
+      return 'D';
+    } else if (nilai === 2) {
+      return 'C';
+    } else if (nilai === 3) {
+      return 'B';
+    } else if (nilai === 4) {
+      return 'A';
+    }
+  }
+}
+
+export const getJurusan = (id) => {
+  let number = parseInt(id);
+  if (number === 1) {
+    return "Manajemen Administrasi Rumah Sakit";
+  } else if (number === 2) {
+    return "Manajemen Administrasi Bisnis";
+  } else if (number === 3) {
+    return "Manajemen Informatika dan Komputer";
+  } else if (number === 4) {
+    return "Komputer Akuntansi dan Perpajakan";
+  } else if (number === 5) {
+    return "Desain Grafis, Multemedia, dan Animasi";
+  } else if (number === 8) {
+    return "Manajemen Keuangan dan Perbankan";
+  } else if (number === 10) {
+    return "Digital Marketing dan Komunikasi";
+  }
+};
+
 export const formatDate = (date) => {
   if (date) {
     let d = String(date);

@@ -71,3 +71,11 @@ export const postPenilaianDosen = (data, token, custom = "") => {
 export const fetchProgkam = (page = 1, token, custom = "") => {
   return axios.get(`/api/progkam?page=${page}&${custom}`, headers(token));
 };
+
+// buku perpustakaan
+export const fetchBukuPerpustakaan = (page = 1, token, custom = "") => {
+  return axios.get(
+    `/api/buku-perpustakaan?page=${page}&${custom}`,
+    headers(token)
+  );
+};

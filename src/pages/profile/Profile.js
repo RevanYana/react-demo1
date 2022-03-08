@@ -75,7 +75,7 @@ const Profile = () => {
                   <iframe
                     title="disc_1"
                     src={`https://manajemen-alfaprima.com/storage/disc_mhs/disc_1_${user.nim}.pdf`}
-                    allowfullscreen
+                    allowFullScreen
                   />
                 </div>
               ) : (

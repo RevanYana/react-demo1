@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LayoutsMain from "../components/layouts/Main";
+import BukuPerpustakaan from "../pages/bukuPerpustakaan/bukuPerpustakaan";
 import KelasPenilaianDosen from "../pages/kelas/penilaianDosen";
 import KelasShow from "../pages/kelas/Show";
 import Krs from "../pages/krs/Krs";
@@ -75,6 +76,14 @@ const Routes = () => {
         <Route path="/progkam">
           <LayoutsMain>
             <Progkam />
+          </LayoutsMain>
+        </Route>
+        {/* End Progkam */}
+
+        {/* Progkam */}
+        <Route path="/buku-perpustakaan">
+          <LayoutsMain>
+            <BukuPerpustakaan />
           </LayoutsMain>
         </Route>
         {/* End Progkam */}

@@ -5,7 +5,7 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { fetchKrs } from "../../api";
 import Loading from "../../components/Loading";
 import Table, { Thead } from "../../components/Table";
-import { getHari } from "../../helpers";
+import { getHari, getGrade } from "../../helpers";
 import { titleState } from "../../storages";
 import { tokenState } from "../../storages/auth";
 
@@ -71,24 +71,6 @@ const SemesterKrs = (props) => {
     return (parseFloat(total) / parseFloat(krs_length)).toFixed(2);
   };
 
-  const getNilai = (nilai) => {
-    if (nilai && nilai.grade) {
-      if (parseInt(nilai.grade) === 1) {
-        return "E";
-      } else if (parseInt(nilai.grade) === 1) {
-        return "D";
-      } else if (parseInt(nilai.grade) === 2) {
-        return "C";
-      } else if (parseInt(nilai.grade) === 3) {
-        return "B";
-      } else if (parseInt(nilai.grade) === 4) {
-        return "A";
-      }
-    } else {
-      return "-";
-    }
-  };
-
   if (
     items &&
     items.length > 0 &&
@@ -151,7 +133,9 @@ const SemesterKrs = (props) => {
                         {i.dosen && i.dosen.nama}
                       </td>
                       <td className="text-center align-middle text-nowrap">
-                        {getNilai(i.nilai)}
+                        {getGrade(
+                          i.nilai && i.nilai.grade ? i.nilai.grade : false
+                        )}
                       </td>
                       <td className="text-center align-middle text-nowrap">
                         {i.kelas && (

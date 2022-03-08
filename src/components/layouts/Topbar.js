@@ -95,6 +95,17 @@ const LayoutsTopbar = () => {
                 <Link
                   className="nav-link active"
                   aria-current="page"
+                  to="/buku-perpustakaan"
+                  onClick={() => setMenuMobile(false)}
+                >
+                  <i className="fa fa-book" />
+                  {" Buku Perpustakaan"}
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className="nav-link active"
+                  aria-current="page"
                   to="/ks-create"
                   onClick={() => setMenuMobile(false)}
                 >
