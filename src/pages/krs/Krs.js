@@ -22,8 +22,10 @@ const Krs = () => {
   const fetchData = useCallback(async () => {
     try {
       const res = await fetchKrs(page, token);
-      setItems(res.data);
-      setIsLoaded(true);
+      if (res.data && res.data.krs) {
+        setItems(res.data.krs);
+        setIsLoaded(true);
+      }
     } catch (err) {
       console.log(err);
     }

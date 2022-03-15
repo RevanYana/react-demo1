@@ -33,7 +33,7 @@ export const getHari = (id) => {
   }
 };
 
-export const getGrade = (nilai) => {
+export const getGrade = (nilai = false) => {
   if (nilai) {
     if (nilai === 1) {
       return 'D';
