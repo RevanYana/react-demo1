@@ -21,7 +21,11 @@ const Krs = () => {
 
   const fetchData = useCallback(async () => {
     try {
-      const res = await fetchKrs(page, token);
+      const res = await fetchKrs(
+        page,
+        token,
+        `with_mhs=1&with_mhs_nilai_akhir=1&with_mhs_nilai_ip=1`
+      );
       if (res.data && res.data.krs) {
         setItems(res.data.krs);
         setIsLoaded(true);
@@ -44,7 +48,14 @@ const Krs = () => {
           {` | `}
           <span className="px-2 text-white bg-info">Teori</span>
         </div>
-
+        <h3 className="text-center text-primary">
+          IPK ={" "}
+          {items &&
+            items[0] &&
+            items[0].mhs &&
+            items[0].mhs.nilai_akhir &&
+            items[0].mhs.nilai_akhir.ipk}
+        </h3>
         <SemesterKrs items={items} semester={4} />
         <SemesterKrs items={items} semester={3} />
         <SemesterKrs items={items} semester={2} />
@@ -59,29 +70,26 @@ const Krs = () => {
 const SemesterKrs = (props) => {
   const { items, semester } = props;
 
-  const getIp = (krs) => {
-    let total =
-      krs &&
-      krs.length > 0 &&
-      items
-        .filter(
-          (i) => parseInt(i.semester) === semester && i.nilai && i.nilai.grade
-        )
-        .map((i) => i.nilai.grade)
-        .reduce((total, curr) => total + curr, 0);
-    let krs_length = krs.length;
-    return (parseFloat(total) / parseFloat(krs_length)).toFixed(2);
-  };
-
   if (
     items &&
     items.length > 0 &&
-    items.filter((i) => i.kelas && i.kelas.semester === semester).length > 0
+    items.filter((i) => i.kelas && parseInt(i.kelas.semester) === semester)
+      .length > 0
   ) {
     return (
       <div className="mb-3">
         <h1>Semester {semester}</h1>
-        <span>IP {getIp(items)}</span>
+        <h5 className="text-primary">
+          IP{" "}
+          {items &&
+            items[0] &&
+            items[0].mhs &&
+            items[0].mhs.nilai_ip &&
+            items[0].mhs.nilai_ip.length > 0 &&
+            items[0].mhs.nilai_ip
+              .filter((ni) => parseInt(ni.semester) === semester)
+              .map((ni) => ni.nilai)}
+        </h5>
         <Table>
           <Thead>
             <th className="text-nowrap">No</th>
@@ -99,7 +107,9 @@ const SemesterKrs = (props) => {
             {items &&
               items.length > 0 &&
               items
-                .filter((i) => i.kelas && i.kelas.semester === semester)
+                .filter(
+                  (i) => i.kelas && parseInt(i.kelas.semester) === semester
+                )
                 .map((i, index) => {
                   return (
                     <tr key={index}>
