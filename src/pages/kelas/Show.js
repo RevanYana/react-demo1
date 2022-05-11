@@ -5,7 +5,7 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { showKelas } from "../../api";
 import Loading from "../../components/Loading";
 import Table, { Thead } from "../../components/Table";
-import { getHari } from "../../helpers";
+import { getGrade, getHari } from "../../helpers";
 import { titleState } from "../../storages";
 import { tokenState, userState } from "../../storages/auth";
 
@@ -31,14 +31,14 @@ const KelasShow = () => {
   useEffect(() => setTitle(`Data Kelas ${items.kode}`), [setTitle, items.kode]);
 
   const getAbsensi = (pertemuan) => {
-    return (
+    let data =
       items.pengajaran &&
       items.pengajaran.length > 0 &&
       items.pengajaran
         .filter((p) => {
           return (
             String(p.pertemuan) === String(pertemuan) &&
-            parseInt(p.status) !== 9
+            String(p.status) !== "9"
           );
         })
         .map((p) => {
@@ -72,8 +72,9 @@ const KelasShow = () => {
                 </span>
               );
             });
-        })
-    );
+        });
+
+    return data;
   };
 
   const getPersentasiAbsensi = () => {
@@ -111,18 +112,18 @@ const KelasShow = () => {
     );
   };
 
-  const getNilaiTotal = () => {
-    return (
-      parseFloat(
-        ((getPersentasiAbsensi() * items.persentasi_kehadiran) / 100).toFixed(2)
-      ) +
-      parseFloat(
-        ((getNilai("tugas") * items.persentasi_tugas) / 100).toFixed(2)
-      ) +
-      parseFloat(((getNilai("uts") * items.persentasi_uts) / 100).toFixed(2)) +
-      parseFloat(((getNilai("uas") * items.persentasi_uas) / 100).toFixed(2))
-    );
-  };
+  // const getNilaiTotal = () => {
+  //   return (
+  //     parseFloat(
+  //       ((getPersentasiAbsensi() * items.persentasi_kehadiran) / 100).toFixed(2)
+  //     ) +
+  //     parseFloat(
+  //       ((getNilai("tugas") * items.persentasi_tugas) / 100).toFixed(2)
+  //     ) +
+  //     parseFloat(((getNilai("uts") * items.persentasi_uts) / 100).toFixed(2)) +
+  //     parseFloat(((getNilai("uas") * items.persentasi_uas) / 100).toFixed(2))
+  //   );
+  // };
 
   if (items.id) {
     return (
@@ -257,8 +258,15 @@ const KelasShow = () => {
               <td className="text-center">
                 {((getNilai("uas") * items.persentasi_uas) / 100).toFixed(2)}
               </td>
-              <td className="text-center">{getNilaiTotal()}</td>
+              {/* <td className="text-center">{getNilaiTotal()}</td> */}
               <td className="text-center">
+                {items.krs
+                  .filter((k) => k.nilai)
+                  .map((k) => {
+                    return k.nilai.total;
+                  })}
+              </td>
+              {/* <td className="text-center">
                 {parseFloat(getNilaiTotal()) >= 85 && "A"}
                 {parseFloat(getNilaiTotal()) < 85 &&
                   parseFloat(getNilaiTotal()) >= 75 &&
@@ -272,6 +280,17 @@ const KelasShow = () => {
                 {parseFloat(getNilaiTotal()) < 45 &&
                   parseFloat(getNilaiTotal()) >= 0 &&
                   "E"}
+              </td> */}
+              <td className="text-center">
+                {getGrade(
+                  parseInt(
+                    items.krs
+                      .filter((k) => k.nilai)
+                      .map((k) => {
+                        return k.nilai.grade;
+                      })
+                  )
+                )}
               </td>
             </tr>
           </tbody>
