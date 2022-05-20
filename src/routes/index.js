@@ -6,6 +6,7 @@ import KelasPenilaianDosen from "../pages/kelas/penilaianDosen";
 import KelasShow from "../pages/kelas/Show";
 import Krs from "../pages/krs/Krs";
 import KsCreate from "../pages/ks/Create";
+import MhsPojtShow from "../pages/mhsPojt/Show";
 import Pembayaran from "../pages/pembayaran/Pembayaran";
 import ProfileEdit from "../pages/profile/Edit";
 import EditPassword from "../pages/profile/EditPassword";
@@ -87,6 +88,14 @@ const Routes = () => {
           </LayoutsMain>
         </Route>
         {/* End Progkam */}
+
+        {/* Ojt */}
+        <Route path="/mhs-pojt-show">
+          <LayoutsMain>
+            <MhsPojtShow />
+          </LayoutsMain>
+        </Route>
+        {/* End Ojt */}
       </Switch>
     </Router>
   );

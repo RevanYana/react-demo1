@@ -79,3 +79,15 @@ export const fetchBukuPerpustakaan = (page = 1, token, custom = "") => {
     headers(token)
   );
 };
+
+// mhs_pojt
+// show
+export const showMhsPojt = (id, token, custom = "") => {
+  return axios.get(`/api/mhs_pojt/${id}?${custom}`, headers(token));
+};
+
+// patch
+export const patchPojt = (id, data, token) => {
+  fetchingData();
+  return axios.patch(`/api/mhs_pojt/${id}`, data, headers(token));
+};
